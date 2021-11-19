@@ -1,6 +1,10 @@
 <?php
 
-    use App\Factory\Classes\CarFactory;
+use App\Adapter\Instagram;
+use App\Adapter\InstagramAdapter;
+use App\Adapter\Twitter;
+use App\Adapter\TwitterAdapter;
+use App\Factory\Classes\CarFactory;
     use App\Singleton\DB;
     use App\Builder\KebabBuilder;
     use App\Facade\MacbookPro;
@@ -66,6 +70,19 @@
 
     $macbookpro = new MacbookProFacade(new MacbookPro);
     $macbookpro->turnOn();
+
+
+    //ADAPTOR
+    print_r("<br><br> ADAPTER : <br>");
+    $photoTwitter = new TwitterAdapter(new Twitter);
+    echo $twitterUserToken = $photoTwitter->getuserToken(1);
+    $photoTwitter->postPhoto("test", "http://test.com/image.jpg");
+
+    echo '<br>';
+
+    $photoInstagram = new InstagramAdapter(new Instagram);
+    echo $instagramUserToken = $photoInstagram->getuserToken(1);
+    $photoInstagram->postPhoto("test", "http://test.com/image.jpg");
 
 
     //DECORATOR
